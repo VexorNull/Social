@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="google-site-verification" content="google5421dd5403e0362e" />
+    
+    <!-- SEO Crawling References -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://vexornull-social-media-profiles.vercel.app/sitemap.xml">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://vexornull.github.io/favicon/favicon.png">
+    
+    <!-- Complete SEO & Advanced Meta Tags -->
+    <title>Tanveer Hussain (@vexornull) - Cyber Social Hub & Portfolio</title>
+    <meta name="title" content="Tanveer Hussain (@vexornull) - Cyber Social Hub & Portfolio">
+    <meta name="description" content="Connect with Tanveer Hussain (vexornull) across all official social media platforms, channels, and developer networks including GitHub, Facebook, Instagram, WhatsApp, YouTube, TikTok, and LinkedIn.">
+    <meta name="keywords" content="Tanveer Hussain, vexornull, social links, developer portfolio, Tanveer web, GitHub vexornull, Facebook vexornull, Instagram vexornull, YouTube vexornull, LinkedIn vexornull, WhatsApp vexornull">
+    <meta name="author" content="Tanveer Hussain">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vexornull-social-media-profiles.vercel.app">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://vexornull-social-media-profiles.vercel.app">
+    <meta property="og:title" content="Tanveer Hussain (@vexornull) - Cyber Social Hub">
+    <meta property="og:description" content="Official social media profile directory and digital hub for Tanveer Hussain (@vexornull). Connect now!">
+    <meta property="og:image" content="https://lh3.googleusercontent.com/d/1QBexpJ2XQtKIgVdkw2FOJU08PLC_7pmH">
+    <meta property="profile:username" content="vexornull">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://vexornull-social-media-profiles.vercel.app">
+    <meta name="twitter:title" content="Tanveer Hussain (@vexornull) - Cyber Social Hub">
+    <meta name="twitter:description" content="Connect with Tanveer Hussain (@vexornull) across all official channels.">
+    <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1QBexpJ2XQtKIgVdkw2FOJU08PLC_7pmH">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Tanveer Hussain",
+      "alternateName": "vexornull",
+      "url": "https://vexornull-social-media-profiles.vercel.app",
+      "image": "https://lh3.googleusercontent.com/d/1QBexpJ2XQtKIgVdkw2FOJU08PLC_7pmH",
+      "sameAs": [
+        "https://github.com/vexornull",
+        "https://facebook.com/vexornull",
+        "https://instagram.com/vexornull",
+        "https://youtube.com/@vexornull",
+        "https://tiktok.com/@vexornull",
+        "https://linkedin.com/in/vexornull"
+      ],
+      "jobTitle": "Web Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Tanveer Web"
+      }
+    }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Linked CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Strict Rhythm-Matched Visualizer Styles -->
+    <style>
+        /* Profile Image Container Styling */
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Primary Core Ring - Exact base fit with instant transient snap */
+        .avatar-ring {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            pointer-events: none;
+            border: 2px solid rgba(56, 189, 248, 0.5);
+            transition: transform 0.01s cubic-bezier(0, 0.8, 0.2, 1), box-shadow 0.01s ease-out, border-color 0.15s ease;
+            will-change: transform, box-shadow, border-color;
+            z-index: 3;
+        }
+
+        /* Secondary Rhythm Echo Ring */
+        .avatar-ring-echo {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 50%;
+            pointer-events: none;
+            border: 1px dashed rgba(168, 85, 247, 0.4);
+            transition: transform 0.02s cubic-bezier(0, 0.8, 0.2, 1), opacity 0.02s ease-out;
+            will-change: transform, opacity;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        /* Ambient Pulse Aura */
+        .avatar-ring-aura {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            border-radius: 50%;
+            pointer-events: none;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            transition: transform 0.03s ease-out, opacity 0.03s ease-out;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        /* Active Rhythm States */
+        .avatar-ring.playing {
+            border-color: #38bdf8;
+        }
+        .avatar-ring-echo.playing {
+            opacity: 0.75;
+        }
+        .avatar-ring-aura.playing {
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Codex Credential Background Canvas & Layers -->
+    <canvas id="codexCanvas" class="codex-canvas"></canvas>
+    <div class="mouse-spotlight" id="mouseSpotlight"></div>
+    <div class="space-vignette"></div>
+    <div class="cyber-grid"></div>
+
+    <!-- Floating Top Telemetry Bar -->
+    <div class="telemetry-bar">
+        <span class="tele-item"><i class="fa-solid fa-signal" style="color: #34d399;"></i> <span id="pingRate">12ms</span></span>
+        <span class="tele-item" id="liveClock">--:--:--</span>
+        <button class="fx-toggle" onclick="toggleEffects()" title="Toggle Matrix FX">
+            <i class="fa-solid fa-cube" id="fxIcon"></i>
+        </button>
+    </div>
+
+    <!-- Hidden Background Audio Player (CORS enabled for spectrum analysis) -->
+    <audio id="bgMusic" autoplay loop crossorigin="anonymous" style="display: none;">
+        <source src="https://files.catbox.moe/kxza27.mp3" type="audio/mpeg">
+        Aapka browser audio element support nahi karta.
+    </audio>
+
+    <div class="container">
+        <!-- Profile Header Component -->
+        <div class="profile-card">
+            <div class="profile-img-container" onclick="triggerAvatarEasterEgg()">
+                <img src="https://lh3.googleusercontent.com/d/1QBexpJ2XQtKIgVdkw2FOJU08PLC_7pmH" alt="Tanveer Hussain Profile Picture">
+                <div class="avatar-ring" id="avatarRing"></div>
+                <div class="avatar-ring-echo" id="avatarRingEcho"></div>
+                <div class="avatar-ring-aura" id="avatarRingAura"></div>
+            </div>
+            
+            <div class="status-badge">
+                <span class="status-dot"></span> <span id="statusText">System Online • Verified Hub</span>
+            </div>
+
+            <h1 class="profile-name">Tanveer Hussain</h1>
+            
+            <div class="profile-handle" onclick="copyHandle()" title="Click to copy handle">
+                <i class="fa-solid fa-code"></i> @vexornull <span class="divider">•</span> <span id="localGreeting">Developer</span>
+            </div>
+            
+            <!-- Quick Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-action" onclick="copyProfileLink()">
+                    <i class="fa-solid fa-share-nodes"></i> Share Hub
+                </button>
+                <button class="btn-action" onclick="openQrModal()">
+                    <i class="fa-solid fa-qrcode"></i> Scan QR
+                </button>
+                <a href="mailto:inquiry.iconnect.social@gmail.com" class="btn-action">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+
+        <!-- Real-time Link Search Bar -->
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search platforms (Press '/' to focus)..." onkeyup="filterLinks()">
+            <span class="search-shortcut">/</span>
+        </div>
+
+        <!-- Social Media Links Directory -->
+        <div class="links-list" id="linksList">
+            <a href="https://secret-speaks.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link secret-speaks" data-name="secret speaks anonymous messaging web app">
+                <div class="link-content">
+                    <i class="fa-solid fa-user-secret brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Secret Speaks</span>
+                        <span class="link-subtitle">Anonymous Messaging App</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+
+            <a href="https://goto-url.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link goto-url" data-name="goto url shortener website">
+                <div class="link-content">
+                    <i class="fa-solid fa-link brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">GoTo URL</span>
+                        <span class="link-subtitle">URL Shortener & Link Tools</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+
+            <a href="https://live-coding-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link live-coding" data-name="live coding with vexornull website">
+                <div class="link-content">
+                    <i class="fa-solid fa-laptop-code brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Live Coding</span>
+                        <span class="link-subtitle">Live Coding with Vexornull</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+            
+            <a href="https://pk-digitalhub.blogspot.com/" target="_blank" rel="noopener noreferrer" class="social-link blog" data-name="pk digital hub blog">
+                <div class="link-content">
+                    <i class="fa-brands fa-blogger-b brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Blog</span>
+                        <span class="link-subtitle">PK Digital Hub</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+            
+            <a href="https://tanveer-hussain-cms.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link portfolio" data-name="tanveer hussain cms website">
+                <div class="link-content">
+                    <i class="fa-solid fa-code brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Portfolio / CMS</span>
+                        <span class="link-subtitle">Tanveer Hussain CMS</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+
+            <a href="https://stylish-font-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link website" data-name="stylish font generator website">
+                <div class="link-content">
+                    <i class="fa-solid fa-globe brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Website</span>
+                        <span class="link-subtitle">Stylish Font Generator</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+
+            <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="social-link linkedin" data-name="linkedin professional network jobs">
+                <div class="link-content">
+                    <i class="fa-brands fa-linkedin-in brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">LinkedIn</span>
+                        <span class="link-subtitle">Professional Network</span>
+                    </div>
+                </div>
+                <div class="link-right">
+                    <span class="badge-action">Connect</span>
+                    <i class="fa-solid fa-chevron-right link-arrow"></i>
+                </div>
+            </a>
+
+            <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link instagram" data-name="instagram photos reels visual updates">
+                <div class="link-content">
+                    <i class="fa-brands fa-instagram brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Instagram</span>
+                        <span class="link-subtitle">Visual Updates & Reels</span>
+                    </div>
+                </div>
+                <div class="link-right">
+                    <span class="badge-action">Follow</span>
+                    <i class="fa-solid fa-chevron-right link-arrow"></i>
+                </div>
+            </a>
+
+            <a href="https://youtube.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link youtube" data-name="youtube videos media channels">
+                <div class="link-content">
+                    <i class="fa-brands fa-youtube brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">YouTube</span>
+                        <span class="link-subtitle">Tech Videos & Channels</span>
+                    </div>
+                </div>
+                <div class="link-right">
+                    <span class="badge-action">Subscribe</span>
+                    <i class="fa-solid fa-chevron-right link-arrow"></i>
+                </div>
+            </a>
+
+            <a href="https://wa.me/+923229522470" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" data-name="whatsapp chat direct contact message">
+                <div class="link-content">
+                    <i class="fa-brands fa-whatsapp brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">WhatsApp</span>
+                        <span class="link-subtitle">Direct Fast Messaging</span>
+                    </div>
+                </div>
+                <div class="link-right">
+                    <span class="badge-action">Direct Chat</span>
+                    <i class="fa-solid fa-chevron-right link-arrow"></i>
+                </div>
+            </a>
+
+            <a href="https://facebook.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link facebook" data-name="facebook community feed posts">
+                <div class="link-content">
+                    <i class="fa-brands fa-facebook-f brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Facebook</span>
+                        <span class="link-subtitle">Community & Posts</span>
+                    </div>
+                </div>
+                <div class="link-right">
+                    <span class="badge-action">Explore</span>
+                    <i class="fa-solid fa-chevron-right link-arrow"></i>
+                </div>
+            </a>
+
+            <a href="https://tiktok.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link tiktok" data-name="tiktok short clips videos">
+                <div class="link-content">
+                    <i class="fa-brands fa-tiktok brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">TikTok</span>
+                        <span class="link-subtitle">Short Tech Clips</span>
+                    </div>
+                </div>
+                <div class="link-right">
+                    <span class="badge-action">Watch</span>
+                    <i class="fa-solid fa-chevron-right link-arrow"></i>
+                </div>
+            </a>
+
+            <!-- Fallback No Results Message -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fa-solid fa-ghost"></i>
+                <p>No platform matching your query found.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="modal-overlay" onclick="closeQrModal(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeQrModal(event)"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Scan Hub QR</h3>
+            <p>Scan with your phone camera to open this profile on mobile.</p>
+            <div class="qr-box">
+                <img id="qrImage" src="" alt="Profile QR Code">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Credit -->
+    <footer>
+        Designed & Built with <i class="fa-solid fa-heart" style="color: #6366f1; font-size: 0.75rem;"></i> by <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
+    </footer>
+
+    <!-- Toast Alert Notification -->
+    <div id="toast" class="toast">✨ Hub profile link copied to clipboard successfully!</div>
+
+    <!-- Linked External Script -->
+    <script src="script.js"></script>
+
+    <!-- Instant Rhythm-Matched Audio Visualizer Script -->
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const avatarRing = document.getElementById('avatarRing');
+        const avatarRingEcho = document.getElementById('avatarRingEcho');
+        const avatarRingAura = document.getElementById('avatarRingAura');
+
+        let audioCtx, analyser, dataArray, source, isAudioInitialized = false;
+        let currentScale = 1;
+        let currentEchoScale = 1;
+        let currentAuraScale = 1;
+
+        function initAudioVisualizer() {
+            if (isAudioInitialized) return;
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+                
+                analyser = audioCtx.createAnalyser();
+                source = audioCtx.createMediaElementSource(audio);
+                
+                source.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                
+                // Fast FFT size and low smoothing for zero-lag rhythm match
+                analyser.fftSize = 128;
+                analyser.smoothingTimeConstant = 0.25; 
+                
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+                
+                isAudioInitialized = true;
+                visualizeRhythmSync();
+            } catch (e) {
+                console.log("Audio Context initialization error:", e);
+            }
+        }
+
+        function visualizeRhythmSync() {
+            if (!audio.paused && analyser) {
+                analyser.getByteFrequencyData(dataArray);
+                
+                // Target exact bass/kick frequency bins (0 to 4) for direct rhythm match
+                let bassSum = 0;
+                let bassRange = 4;
+                for (let i = 0; i < bassRange; i++) {
+                    bassSum += dataArray[i];
+                }
+                let bassAvg = bassSum / bassRange;
+                
+                // Mid frequencies for color shift
+                let midSum = 0;
+                for (let i = 8; i < 20; i++) {
+                    midSum += dataArray[i];
+                }
+                let midAvg = midSum / 12;
+
+                // Direct responsive scaling (Instant snap on beat hit, quick recovery)
+                let targetScale = 1 + (bassAvg / 255) * 0.16;
+                let targetEchoScale = 1 + (bassAvg / 255) * 0.24;
+                let targetAuraScale = 1 + (bassAvg / 255) * 0.32;
+
+                // Fast attack, smooth decay (Ensures exact beat alignment)
+                let attackFactor = 0.7; // Fast jump
+                let decayFactor = 0.25;  // Smooth return
+
+                currentScale += (targetScale - currentScale) * (targetScale > currentScale ? attackFactor : decayFactor);
+                currentEchoScale += (targetEchoScale - currentEchoScale) * (targetEchoScale > currentEchoScale ? attackFactor : decayFactor);
+                currentAuraScale += (targetAuraScale - currentAuraScale) * (targetAuraScale > currentAuraScale ? attackFactor : decayFactor);
+
+                // Aesthetic Electric Cyan & Violet Color Sync
+                let red = Math.floor(56 + (midAvg / 255) * 90);
+                let green = Math.floor(189 - (midAvg / 255) * 60);
+                let blue = Math.floor(248);
+                let rhythmColor = `rgb(${red}, ${green}, ${blue})`;
+
+                let shadowBlur = 6 + (bassAvg / 255) * 22;
+                let opacity = 0.5 + (bassAvg / 255) * 0.5;
+
+                // Apply to Core Ring
+                avatarRing.style.transform = `scale(${currentScale})`;
+                avatarRing.style.borderColor = rhythmColor;
+                avatarRing.style.boxShadow = `
+                    0 0 ${shadowBlur}px rgba(${red}, ${green}, ${blue}, ${opacity}), 
+                    0 0 ${shadowBlur * 1.5}px rgba(168, 85, 247, ${opacity * 0.6}),
+                    inset 0 0 ${shadowBlur * 0.3}px rgba(${red}, ${green}, ${blue}, ${opacity * 0.5})
+                `;
+                avatarRing.classList.add('playing');
+
+                // Apply to Echo Ring
+                avatarRingEcho.style.transform = `scale(${currentEchoScale})`;
+                avatarRingEcho.style.borderColor = `rgba(168, 85, 247, ${opacity * 0.7})`;
+                avatarRingEcho.classList.add('playing');
+
+                // Apply to Aura
+                avatarRingAura.style.transform = `scale(${currentAuraScale})`;
+                avatarRingAura.style.borderColor = `rgba(${red}, ${green}, ${blue}, ${opacity * 0.35})`;
+                avatarRingAura.classList.add('playing');
+            } else {
+                currentScale += (1 - currentScale) * 0.1;
+                currentEchoScale += (1 - currentEchoScale) * 0.1;
+                currentAuraScale += (1 - currentAuraScale) * 0.1;
+
+                avatarRing.style.transform = `scale(${currentScale})`;
+                avatarRing.style.boxShadow = 'none';
+                avatarRing.style.borderColor = 'rgba(56, 189, 248, 0.5)';
+                avatarRing.classList.remove('playing');
+
+                avatarRingEcho.style.transform = `scale(${currentEchoScale})`;
+                avatarRingEcho.classList.remove('playing');
+
+                avatarRingAura.style.transform = `scale(${currentAuraScale})`;
+                avatarRingAura.classList.remove('playing');
+            }
+            
+            requestAnimationFrame(visualizeRhythmSync);
+        }
+
+        audio.addEventListener('play', () => {
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            initAudioVisualizer();
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            audio.volume = 0.8;
+            audio.play().then(() => {
+                initAudioVisualizer();
+            }).catch(() => {
+                console.log("Autoplay waiting for user interaction.");
+            });
+        });
+
+        document.body.addEventListener('click', function once() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    initAudioVisualizer();
+                });
+            } else if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
