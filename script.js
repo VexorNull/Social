@@ -1,154 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initYear();
-    initMouseSpotlight();
-    initCodexCanvas();
-    initTelemetry();
-    initSearchEngine();
-    initAudioEngine();
+    setCurrentYear();
+    initClockAndGreeting();
+    initCursorGlow();
+    initSearch();
+    initAudioVisualizer();
 });
 
 /* =========================================
-   1. DYNAMIC YEAR & TELEMETRY
+   1. TIME & GREETING
    ========================================= */
-function initYear() {
-    const yearEl = document.getElementById('currentYear');
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
+function setCurrentYear() {
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
 
-function initTelemetry() {
+function initClockAndGreeting() {
     const clockEl = document.getElementById('liveClock');
-    const greetingEl = document.getElementById('localGreeting');
-    const pingEl = document.getElementById('pingRate');
+    const greetingEl = document.getElementById('greetingLabel');
 
     function update() {
         const now = new Date();
         if (clockEl) {
-            clockEl.textContent = now.toTimeString().split(' ')[0];
+            clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         }
-
         if (greetingEl) {
-            const hrs = now.getHours();
-            if (hrs >= 5 && hrs < 12) greetingEl.textContent = 'Good Morning';
-            else if (hrs >= 12 && hrs < 17) greetingEl.textContent = 'Good Afternoon';
-            else if (hrs >= 17 && hrs < 21) greetingEl.textContent = 'Good Evening';
-            else greetingEl.textContent = 'Night Shift';
-        }
-
-        if (pingEl && Math.random() > 0.65) {
-            const latency = Math.floor(Math.random() * 7) + 9;
-            pingEl.textContent = `${latency}ms`;
+            const hour = now.getHours();
+            if (hour < 12) greetingEl.textContent = 'Good Morning';
+            else if (hour < 17) greetingEl.textContent = 'Good Afternoon';
+            else greetingEl.textContent = 'Good Evening';
         }
     }
 
     update();
-    setInterval(update, 1000);
+    setInterval(update, 15000);
 }
 
 /* =========================================
-   2. AMBIENT MOUSE SPOTLIGHT & BINARY MATRIX
+   2. SUBTLE CURSOR GLOW & AMBIENT TOGGLE
    ========================================= */
-function initMouseSpotlight() {
-    const spotlight = document.getElementById('mouseSpotlight');
-    if (!spotlight) return;
+function initCursorGlow() {
+    const glow = document.getElementById('cursorGlow');
+    if (!glow) return;
 
-    window.addEventListener('mousemove', (e) => {
-        spotlight.style.left = `${e.clientX}px`;
-        spotlight.style.top = `${e.clientY}px`;
+    window.addEventListener('pointermove', (e) => {
+        glow.style.left = `${e.clientX}px`;
+        glow.style.top = `${e.clientY}px`;
     }, { passive: true });
 }
 
-function initCodexCanvas() {
-    const canvas = document.getElementById('codexCanvas');
-    if (!canvas) return;
+let ambientEnabled = true;
+function toggleAmbient() {
+    ambientEnabled = !ambientEnabled;
+    const layer = document.querySelector('.ambient-layer');
+    const btn = document.getElementById('ambientToggleBtn');
 
-    const ctx = canvas.getContext('2d');
-    const chars = '01';
-    const fontSize = 14;
-    let width = 0;
-    let height = 0;
-    let drops = [];
+    if (layer) layer.style.opacity = ambientEnabled ? '1' : '0';
+    if (btn) btn.classList.toggle('active', ambientEnabled);
 
-    function resizeCanvas() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        const columns = Math.floor(width / fontSize);
-        drops = Array.from({ length: columns }, () => Math.floor(Math.random() * -80));
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    const embers = Array.from({ length: 36 }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 1.8 + 0.8,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.8) * 1.1,
-        opacity: Math.random() * 0.5 + 0.2
-    }));
-
-    function render() {
-        ctx.fillStyle = 'rgba(3, 7, 18, 0.2)';
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.font = `600 ${fontSize}px 'JetBrains Mono', monospace`;
-        for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            ctx.fillStyle = Math.random() > 0.88 ? '#e0e7ff' : 'rgba(129, 140, 248, 0.75)';
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > height && Math.random() > 0.978) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-
-        embers.forEach((ember) => {
-            ember.x += ember.speedX + Math.sin(ember.y * 0.01) * 0.35;
-            ember.y += ember.speedY;
-
-            if (ember.y < 0) {
-                ember.y = height;
-                ember.x = Math.random() * width;
-            }
-            if (ember.x < 0) ember.x = width;
-            if (ember.x > width) ember.x = 0;
-
-            ctx.beginPath();
-            ctx.arc(ember.x, ember.y, ember.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(99, 102, 241, ${ember.opacity})`;
-            ctx.fill();
-        });
-
-        requestAnimationFrame(render);
-    }
-
-    requestAnimationFrame(render);
+    showToast(ambientEnabled ? 'Ambient glow on' : 'Minimal mode on');
 }
 
 /* =========================================
-   3. SMART DIRECTORY SEARCH & SHORTCUTS
+   3. SEARCH & KEYBOARD SHORTCUTS
    ========================================= */
-function initSearchEngine() {
-    const searchInput = document.getElementById('searchInput');
-    if (!searchInput) return;
+function initSearch() {
+    const input = document.getElementById('searchInput');
+    if (!input) return;
 
-    searchInput.addEventListener('input', filterLinks);
+    input.addEventListener('input', filterLinks);
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === '/' && document.activeElement !== searchInput) {
-            event.preventDefault();
-            searchInput.focus();
-        } else if (event.key === 'Escape') {
-            if (document.activeElement === searchInput && searchInput.value !== '') {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== input) {
+            e.preventDefault();
+            input.focus();
+        } else if (e.key === 'Escape') {
+            const modal = document.getElementById('qrModal');
+            if (modal && modal.classList.contains('open')) {
+                modal.classList.remove('open');
+            } else if (document.activeElement === input && input.value) {
                 clearSearch();
-            } else {
-                const modal = document.getElementById('qrModal');
-                if (modal && modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                }
             }
         }
     });
@@ -157,45 +87,43 @@ function initSearchEngine() {
 function filterLinks() {
     const input = document.getElementById('searchInput');
     const clearBtn = document.getElementById('clearSearchBtn');
-    const shortcutBadge = document.getElementById('searchShortcut');
-    const sections = document.querySelectorAll('[data-section]');
-    const noResults = document.getElementById('noResults');
+    const kbdHint = document.getElementById('kbdHint');
+    const groups = document.querySelectorAll('[data-group]');
+    const emptyState = document.getElementById('noResults');
 
     if (!input) return;
-
     const query = input.value.trim().toLowerCase();
 
-    if (clearBtn && shortcutBadge) {
-        clearBtn.style.display = query.length > 0 ? 'flex' : 'none';
-        shortcutBadge.style.display = query.length > 0 ? 'none' : 'inline-block';
+    if (clearBtn && kbdHint) {
+        clearBtn.style.display = query ? 'inline-flex' : 'none';
+        kbdHint.style.display = query ? 'none' : 'inline-block';
     }
 
-    let totalVisible = 0;
+    let totalMatches = 0;
 
-    sections.forEach((section) => {
-        const links = section.querySelectorAll('.social-link');
-        let sectionVisible = 0;
+    groups.forEach((group) => {
+        const cards = group.querySelectorAll('.link-card');
+        let groupMatches = 0;
 
-        links.forEach((link) => {
-            const title = link.querySelector('.link-title')?.textContent || '';
-            const subtitle = link.querySelector('.link-subtitle')?.textContent || '';
-            const keywords = link.getAttribute('data-keywords') || '';
-            const searchableText = `${title} ${subtitle} ${keywords}`.toLowerCase();
+        cards.forEach((card) => {
+            const title = card.querySelector('.card-title')?.textContent || '';
+            const desc = card.querySelector('.card-desc')?.textContent || '';
+            const keywords = card.getAttribute('data-keywords') || '';
+            const haystack = `${title} ${desc} ${keywords}`.toLowerCase();
 
-            if (searchableText.includes(query)) {
-                link.style.display = 'flex';
-                sectionVisible++;
-                totalVisible++;
-            } else {
-                link.style.display = 'none';
+            const match = haystack.includes(query);
+            card.style.display = match ? 'flex' : 'none';
+            if (match) {
+                groupMatches++;
+                totalMatches++;
             }
         });
 
-        section.style.display = sectionVisible > 0 ? 'flex' : 'none';
+        group.style.display = groupMatches > 0 ? 'flex' : 'none';
     });
 
-    if (noResults) {
-        noResults.style.display = totalVisible === 0 ? 'block' : 'none';
+    if (emptyState) {
+        emptyState.style.display = totalMatches === 0 ? 'block' : 'none';
     }
 }
 
@@ -209,41 +137,38 @@ function clearSearch() {
 }
 
 /* =========================================
-   4. RHYTHM-SYNCED AUDIO VISUALIZER & CONTROLS
+   4. RHYTHM-SYNCED AUDIO RING
    ========================================= */
 let audioCtx = null;
 let analyser = null;
-let dataArray = null;
-let isAudioInitialized = false;
-let currentScale = 1;
-let currentEchoScale = 1;
-let currentAuraScale = 1;
+let freqData = null;
+let audioReady = false;
+let scaleCore = 1;
+let scaleEcho = 1;
+let scaleAura = 1;
 
-function initAudioEngine() {
+function initAudioVisualizer() {
     const audio = document.getElementById('bgMusic');
     if (!audio) return;
 
-    audio.volume = 0.75;
+    audio.volume = 0.7;
 
     audio.addEventListener('play', () => {
-        updateAudioUI(true);
+        setAudioBtnState(true);
         if (audioCtx && audioCtx.state === 'suspended') {
             audioCtx.resume();
         }
-        setupVisualizer(audio);
+        bindAnalyser(audio);
     });
 
     audio.addEventListener('pause', () => {
-        updateAudioUI(false);
+        setAudioBtnState(false);
     });
 
-    // Attempt subtle autoplay; fallback to first user click
     audio.play().catch(() => {
-        document.body.addEventListener('click', function unlockAudio(e) {
+        document.body.addEventListener('click', (e) => {
             if (e.target.closest('#audioToggleBtn')) return;
-            if (audio.paused) {
-                audio.play().catch(() => {});
-            }
+            if (audio.paused) audio.play().catch(() => {});
         }, { once: true });
     });
 }
@@ -253,32 +178,23 @@ function toggleAudio() {
     if (!audio) return;
 
     if (audio.paused) {
-        audio.play().catch((err) => {
-            console.warn('Playback blocked:', err);
-            showToast('Tap anywhere to enable audio');
-        });
+        audio.play().catch(() => showToast('Click anywhere to start audio'));
     } else {
         audio.pause();
     }
 }
 
-function updateAudioUI(isPlaying) {
+function setAudioBtnState(playing) {
     const btn = document.getElementById('audioToggleBtn');
     const icon = document.getElementById('audioIcon');
     if (!btn || !icon) return;
 
-    if (isPlaying) {
-        btn.classList.add('active-audio');
-        icon.className = 'fa-solid fa-volume-high';
-    } else {
-        btn.classList.remove('active-audio');
-        icon.className = 'fa-solid fa-volume-xmark';
-    }
+    btn.classList.toggle('active', playing);
+    icon.className = playing ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
 }
 
-function setupVisualizer(audio) {
-    if (isAudioInitialized) return;
-
+function bindAnalyser(audio) {
+    if (audioReady) return;
     try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         audioCtx = new AudioContext();
@@ -290,153 +206,121 @@ function setupVisualizer(audio) {
 
         analyser.fftSize = 128;
         analyser.smoothingTimeConstant = 0.25;
-        dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-        isAudioInitialized = true;
-        renderRhythmLoop(audio);
-    } catch (err) {
-        console.warn('Web Audio API unavailable:', err);
+        freqData = new Uint8Array(analyser.frequencyBinCount);
+        audioReady = true;
+        animateRings(audio);
+    } catch (_) {
+        // Fallback if Web Audio API is restricted
     }
 }
 
-function renderRhythmLoop(audio) {
+function animateRings(audio) {
     const ring = document.getElementById('avatarRing');
     const echo = document.getElementById('avatarRingEcho');
     const aura = document.getElementById('avatarRingAura');
-
     if (!ring || !echo || !aura) return;
 
     if (!audio.paused && analyser) {
-        analyser.getByteFrequencyData(dataArray);
+        analyser.getByteFrequencyData(freqData);
 
         let bassSum = 0;
-        for (let i = 0; i < 4; i++) bassSum += dataArray[i];
+        for (let i = 0; i < 4; i++) bassSum += freqData[i];
         const bassAvg = bassSum / 4;
 
         let midSum = 0;
-        for (let i = 8; i < 20; i++) midSum += dataArray[i];
+        for (let i = 8; i < 20; i++) midSum += freqData[i];
         const midAvg = midSum / 12;
 
-        const targetScale = 1 + (bassAvg / 255) * 0.14;
-        const targetEcho = 1 + (bassAvg / 255) * 0.22;
-        const targetAura = 1 + (bassAvg / 255) * 0.30;
+        const tCore = 1 + (bassAvg / 255) * 0.12;
+        const tEcho = 1 + (bassAvg / 255) * 0.19;
+        const tAura = 1 + (bassAvg / 255) * 0.26;
 
-        currentScale += (targetScale - currentScale) * (targetScale > currentScale ? 0.65 : 0.22);
-        currentEchoScale += (targetEcho - currentEchoScale) * (targetEcho > currentEchoScale ? 0.65 : 0.22);
-        currentAuraScale += (targetAura - currentAuraScale) * (targetAura > currentAuraScale ? 0.65 : 0.22);
+        scaleCore += (tCore - scaleCore) * (tCore > scaleCore ? 0.65 : 0.22);
+        scaleEcho += (tEcho - scaleEcho) * (tEcho > scaleEcho ? 0.65 : 0.22);
+        scaleAura += (tAura - scaleAura) * (tAura > scaleAura ? 0.65 : 0.22);
 
-        const r = Math.floor(56 + (midAvg / 255) * 90);
-        const g = Math.floor(189 - (midAvg / 255) * 55);
+        const r = Math.floor(56 + (midAvg / 255) * 80);
+        const g = Math.floor(189 - (midAvg / 255) * 50);
         const b = 248;
-        const blur = 6 + (bassAvg / 255) * 20;
-        const alpha = 0.45 + (bassAvg / 255) * 0.5;
+        const blur = 6 + (bassAvg / 255) * 16;
+        const alpha = 0.4 + (bassAvg / 255) * 0.45;
 
-        ring.style.transform = `scale(${currentScale})`;
+        ring.style.transform = `scale(${scaleCore})`;
         ring.style.borderColor = `rgb(${r}, ${g}, ${b})`;
-        ring.style.boxShadow = `0 0 ${blur}px rgba(${r}, ${g}, ${b}, ${alpha}), 0 0 ${blur * 1.4}px rgba(168, 85, 247, ${alpha * 0.55})`;
-        ring.classList.add('playing');
+        ring.style.boxShadow = `0 0 ${blur}px rgba(${r}, ${g}, ${b}, ${alpha})`;
 
-        echo.style.transform = `scale(${currentEchoScale})`;
+        echo.style.transform = `scale(${scaleEcho})`;
         echo.classList.add('playing');
 
-        aura.style.transform = `scale(${currentAuraScale})`;
+        aura.style.transform = `scale(${scaleAura})`;
         aura.classList.add('playing');
     } else {
-        currentScale += (1 - currentScale) * 0.12;
-        currentEchoScale += (1 - currentEchoScale) * 0.12;
-        currentAuraScale += (1 - currentAuraScale) * 0.12;
+        scaleCore += (1 - scaleCore) * 0.12;
+        scaleEcho += (1 - scaleEcho) * 0.12;
+        scaleAura += (1 - scaleAura) * 0.12;
 
-        ring.style.transform = `scale(${currentScale})`;
+        ring.style.transform = `scale(${scaleCore})`;
         ring.style.boxShadow = 'none';
-        ring.style.borderColor = 'rgba(56, 189, 248, 0.45)';
-        ring.classList.remove('playing');
+        ring.style.borderColor = 'rgba(56, 189, 248, 0.4)';
 
-        echo.style.transform = `scale(${currentEchoScale})`;
+        echo.style.transform = `scale(${scaleEcho})`;
         echo.classList.remove('playing');
 
-        aura.style.transform = `scale(${currentAuraScale})`;
+        aura.style.transform = `scale(${scaleAura})`;
         aura.classList.remove('playing');
     }
 
-    requestAnimationFrame(() => renderRhythmLoop(audio));
+    requestAnimationFrame(() => animateRings(audio));
 }
 
 /* =========================================
-   5. UI INTERACTIONS, CLIPBOARD & MODAL
+   5. CLIPBOARD, QR MODAL & TOAST
    ========================================= */
-function copyProfileLink() {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-        showToast('Hub URL copied to clipboard');
-    }).catch(() => {
-        showToast('Unable to copy link');
-    });
-}
-
 function copyHandle() {
     navigator.clipboard.writeText('@vexornull').then(() => {
-        showToast('Handle @vexornull copied');
+        showToast('Copied @vexornull');
     });
 }
 
-let toastTimeout;
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    if (!toast) return;
-
-    toast.textContent = message;
-    toast.classList.add('show');
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        toast.classList.remove('show');
-    }, 2800);
+function copyProfileLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast('Hub link copied');
+    });
 }
 
-let fxActive = true;
-function toggleEffects() {
-    fxActive = !fxActive;
-    const canvasEl = document.getElementById('codexCanvas');
-    const grid = document.querySelector('.cyber-grid');
-    const icon = document.getElementById('fxIcon');
-
-    if (canvasEl) canvasEl.style.opacity = fxActive ? '1' : '0.12';
-    if (grid) {
-        grid.style.animationPlayState = fxActive ? 'running' : 'paused';
-        grid.style.opacity = fxActive ? '1' : '0.15';
-    }
-    if (icon) {
-        icon.style.opacity = fxActive ? '1' : '0.45';
-    }
-    showToast(fxActive ? 'Matrix FX enabled' : 'Minimalist mode enabled');
-}
-
-function triggerAvatarEasterEgg() {
-    const messages = [
-        'System Verified • @vexornull',
-        'Building sleek web experiences.',
-        'All systems operational at 100%.',
-        'Thanks for stopping by the hub!'
+function cycleProfileNote() {
+    const notes = [
+        'Available • @vexornull',
+        'Crafting clean web tools',
+        'Verified profile • 2026'
     ];
-    const statusTextEl = document.getElementById('statusText');
-    if (!statusTextEl) return;
-
-    const current = statusTextEl.textContent;
-    const next = messages.find((msg) => msg !== current) || messages[0];
-    statusTextEl.textContent = next;
+    const el = document.getElementById('statusText');
+    if (!el) return;
+    const next = notes.find((n) => n !== el.textContent) || notes[0];
+    el.textContent = next;
 }
 
 function openQrModal() {
     const modal = document.getElementById('qrModal');
-    const qrImg = document.getElementById('qrImage');
-    if (!modal || !qrImg) return;
-
-    const targetUrl = encodeURIComponent(window.location.href);
-    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=4&data=${targetUrl}`;
-    modal.classList.add('active');
+    const img = document.getElementById('qrImage');
+    if (!modal || !img) return;
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=4&data=${encodeURIComponent(window.location.href)}`;
+    modal.classList.add('open');
 }
 
 function closeQrModal(event) {
-    if (event.target.classList.contains('modal-overlay') || event.target.closest('.modal-close')) {
+    if (event.target.classList.contains('modal-backdrop') || event.target.closest('.modal-x')) {
         const modal = document.getElementById('qrModal');
-        if (modal) modal.classList.remove('active');
+        if (modal) modal.classList.remove('open');
     }
+}
+
+let toastTimer;
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
 }
