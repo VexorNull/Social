@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#030712">
+    <meta name="theme-color" content="#060913">
     <meta name="google-site-verification" content="google5421dd5403e0362e" />
 
-    <!-- SEO Crawling & Canonical References -->
+    <!-- SEO & Crawling -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://vexornull-social-media-profiles.vercel.app/sitemap.xml">
     <link rel="canonical" href="https://vexornull-social-media-profiles.vercel.app">
     <link rel="icon" type="image/png" href="https://vexornull.github.io/favicon/favicon.png">
 
     <!-- Primary Meta Tags -->
-    <title>Tanveer Hussain (@vexornull) — Executive Digital Hub & Portfolio</title>
-    <meta name="title" content="Tanveer Hussain (@vexornull) — Executive Digital Hub & Portfolio">
-    <meta name="description" content="Official digital directory, web applications, and verified social channels of Tanveer Hussain (@vexornull). Connect on GitHub, LinkedIn, YouTube, Instagram, and WhatsApp.">
-    <meta name="keywords" content="Tanveer Hussain, vexornull, developer portfolio, web developer, GitHub vexornull, LinkedIn vexornull, Secret Speaks, GoTo URL, Live Coding">
+    <title>Tanveer Hussain (@vexornull) — Digital Hub</title>
+    <meta name="title" content="Tanveer Hussain (@vexornull) — Digital Hub">
+    <meta name="description" content="Official digital hub, web applications, and verified social channels of Tanveer Hussain (@vexornull).">
+    <meta name="keywords" content="Tanveer Hussain, vexornull, developer portfolio, web developer, GitHub vexornull, LinkedIn vexornull">
     <meta name="author" content="Tanveer Hussain">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://vexornull-social-media-profiles.vercel.app">
-    <meta property="og:title" content="Tanveer Hussain (@vexornull) — Executive Digital Hub">
-    <meta property="og:description" content="Verified digital ecosystem, web apps, and official social channels for Tanveer Hussain (@vexornull).">
+    <meta property="og:title" content="Tanveer Hussain (@vexornull) — Digital Hub">
+    <meta property="og:description" content="Curated web projects and verified social profiles of Tanveer Hussain (@vexornull).">
     <meta property="og:image" content="https://lh3.googleusercontent.com/d/1QBexpJ2XQtKIgVdkw2FOJU08PLC_7pmH">
     <meta property="profile:username" content="vexornull">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://vexornull-social-media-profiles.vercel.app">
-    <meta name="twitter:title" content="Tanveer Hussain (@vexornull) — Executive Digital Hub">
-    <meta name="twitter:description" content="Connect with Tanveer Hussain (@vexornull) across official platforms and web projects.">
+    <meta name="twitter:title" content="Tanveer Hussain (@vexornull) — Digital Hub">
+    <meta name="twitter:description" content="Connect with Tanveer Hussain (@vexornull) across official platforms.">
     <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1QBexpJ2XQtKIgVdkw2FOJU08PLC_7pmH">
 
     <!-- Schema.org Structured Data -->
@@ -51,7 +51,7 @@
         "https://facebook.com/vexornull",
         "https://tiktok.com/@vexornull"
       ],
-      "jobTitle": "Web Developer & Digital Creator",
+      "jobTitle": "Web Developer",
       "worksFor": {
         "@type": "Organization",
         "name": "Tanveer Web"
@@ -59,341 +59,285 @@
     }
     </script>
 
-    <!-- Icons & Typography -->
+    <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Ambient Background Layers -->
-    <canvas id="codexCanvas" class="codex-canvas" aria-hidden="true"></canvas>
-    <div class="mouse-spotlight" id="mouseSpotlight" aria-hidden="true"></div>
-    <div class="space-vignette" aria-hidden="true"></div>
-    <div class="cyber-grid" aria-hidden="true"></div>
+    <!-- Soft Aesthetic Ambient Glows -->
+    <div class="ambient-layer" aria-hidden="true">
+        <div class="orb orb-indigo"></div>
+        <div class="orb orb-cyan"></div>
+        <div class="cursor-glow" id="cursorGlow"></div>
+    </div>
 
-    <!-- Hidden Background Audio (CORS Enabled for Spectrum Sync) -->
+    <!-- Hidden Audio Player for Rhythm Ring -->
     <audio id="bgMusic" loop crossorigin="anonymous" preload="auto">
         <source src="https://files.catbox.moe/kxza27.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Top Executive Telemetry Bar -->
-    <header class="telemetry-bar">
-        <div class="tele-group">
-            <span class="tele-item" title="System Latency">
-                <span class="pulse-indicator"></span>
-                <span id="pingRate">12ms</span>
-            </span>
-            <span class="tele-divider">|</span>
-            <span class="tele-item" id="liveClock">--:--:--</span>
+    <!-- Minimal Top Bar -->
+    <header class="top-bar">
+        <div class="status-pill">
+            <span class="dot"></span>
+            <span id="statusText">Available • @vexornull</span>
         </div>
 
-        <div class="tele-controls">
-            <button type="button" class="tele-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Toggle Ambient Audio" aria-label="Toggle Ambient Audio">
+        <div class="top-actions">
+            <span class="clock-text" id="liveClock">--:--</span>
+            <button type="button" class="icon-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Toggle Ambient Sound" aria-label="Toggle Ambient Sound">
                 <i class="fa-solid fa-volume-xmark" id="audioIcon"></i>
             </button>
-            <button type="button" class="tele-btn" id="fxToggleBtn" onclick="toggleEffects()" title="Toggle Background Matrix" aria-label="Toggle Background Matrix">
-                <i class="fa-solid fa-cube" id="fxIcon"></i>
+            <button type="button" class="icon-btn" id="ambientToggleBtn" onclick="toggleAmbient()" title="Toggle Ambient Glow" aria-label="Toggle Ambient Glow">
+                <i class="fa-solid fa-sparkles" id="ambientIcon"></i>
             </button>
         </div>
     </header>
 
-    <main class="container">
-        <!-- Executive Profile Identity Card -->
-        <section class="profile-card" aria-label="Profile Overview">
-            <div class="profile-img-container" onclick="triggerAvatarEasterEgg()" role="button" tabindex="0" aria-label="Tanveer Hussain Avatar">
+    <main class="hub-container">
+        <!-- Clean Executive Profile Header -->
+        <section class="profile-header">
+            <div class="avatar-wrap" onclick="cycleProfileNote()" role="button" tabindex="0" aria-label="Profile Avatar">
                 <img src="https://lh3.googleusercontent.com/d/1QBexpJ2XQtKIgVdkw2FOJU08PLC_7pmH" alt="Tanveer Hussain" loading="eager">
                 <div class="avatar-ring" id="avatarRing"></div>
                 <div class="avatar-ring-echo" id="avatarRingEcho"></div>
                 <div class="avatar-ring-aura" id="avatarRingAura"></div>
             </div>
 
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                <span id="statusText">System Online • Verified Hub</span>
-            </div>
-
-            <h1 class="profile-name">
+            <h1 class="display-name">
                 Tanveer Hussain
-                <i class="fa-solid fa-circle-check verified-tick" title="Verified Profile"></i>
+                <i class="fa-solid fa-circle-check verified-badge" title="Verified Identity"></i>
             </h1>
 
-            <button type="button" class="profile-handle" onclick="copyHandle()" title="Click to copy @vexornull">
-                <i class="fa-solid fa-terminal"></i>
-                <span>@vexornull</span>
-                <span class="divider">•</span>
-                <span id="localGreeting">Web Developer</span>
-                <i class="fa-regular fa-copy copy-mini"></i>
-            </button>
+            <p class="bio-subtitle">
+                Web Developer & Digital Builder • <span id="greetingLabel">Welcome</span>
+            </p>
 
-            <!-- Primary Quick Actions -->
-            <div class="action-buttons">
-                <button type="button" class="btn-action" onclick="copyProfileLink()">
-                    <i class="fa-solid fa-share-nodes"></i>
-                    <span>Share Hub</span>
+            <div class="pill-actions">
+                <button type="button" class="pill-btn" onclick="copyHandle()">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>@vexornull</span>
                 </button>
-                <button type="button" class="btn-action" onclick="openQrModal()">
+                <button type="button" class="pill-btn" onclick="copyProfileLink()">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    <span>Share</span>
+                </button>
+                <button type="button" class="pill-btn" onclick="openQrModal()">
                     <i class="fa-solid fa-qrcode"></i>
-                    <span>QR Pass</span>
+                    <span>QR Code</span>
                 </button>
-                <a href="mailto:inquiry.iconnect.social@gmail.com" class="btn-action">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>Inquiries</span>
+                <a href="mailto:inquiry.iconnect.social@gmail.com" class="pill-btn">
+                    <i class="fa-regular fa-envelope"></i>
+                    <span>Email</span>
                 </a>
             </div>
         </section>
 
-        <!-- Instant Directory Filter -->
-        <div class="search-box">
+        <!-- Clean Search Bar -->
+        <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="searchInput" placeholder="Filter platforms, apps, or networks..." autocomplete="off" aria-label="Filter links">
-            <button type="button" id="clearSearchBtn" class="clear-search" onclick="clearSearch()" aria-label="Clear search" style="display: none;">
+            <input type="text" id="searchInput" placeholder="Search apps or social channels..." autocomplete="off" aria-label="Search links">
+            <button type="button" id="clearSearchBtn" class="clear-btn" onclick="clearSearch()" aria-label="Clear search" style="display: none;">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <span class="search-shortcut" id="searchShortcut">/</span>
+            <span class="kbd-hint" id="kbdHint">/</span>
         </div>
 
-        <!-- Categorized Directory -->
-        <div class="directory-wrapper" id="linksList">
+        <!-- Grouped Clean Cards -->
+        <div class="groups-container" id="linksList">
 
-            <!-- Category 1: Featured Web Products & Ecosystems -->
-            <div class="link-section" data-section>
-                <div class="section-header">
-                    <span>Ecosystem & Web Apps</span>
-                    <span class="section-line"></span>
-                </div>
+            <!-- Group 1: Web Applications & Digital Products -->
+            <div class="link-group" data-group>
+                <h2 class="group-title">Web Applications</h2>
 
-                <a href="https://tanveer-hussain-cms.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link portfolio" data-keywords="portfolio cms tanveer hussain projects showcase">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-solid fa-layer-group brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">Executive Portfolio & CMS</span>
-                            <span class="link-subtitle">Core Architecture, Case Studies & Web Systems</span>
+                <a href="https://tanveer-hussain-cms.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card portfolio" data-keywords="portfolio cms tanveer hussain showcase work">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-solid fa-layer-group"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">Portfolio & CMS</span>
+                            <span class="card-desc">Selected work, architecture & editorial system</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Featured</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://secret-speaks.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link secret-speaks" data-keywords="secret speaks anonymous messaging web app chat">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-solid fa-user-secret brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">Secret Speaks</span>
-                            <span class="link-subtitle">Encrypted Anonymous Messaging Platform</span>
+                <a href="https://secret-speaks.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card secret-speaks" data-keywords="secret speaks anonymous messaging notes">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-solid fa-user-secret"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">Secret Speaks</span>
+                            <span class="card-desc">Anonymous messaging web experience</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Web App</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://goto-url.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link goto-url" data-keywords="goto url shortener link management analytics">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-solid fa-link brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">GoTo URL</span>
-                            <span class="link-subtitle">High-Speed URL Shortener & Redirect Engine</span>
+                <a href="https://goto-url.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card goto-url" data-keywords="goto url shortener links redirect">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-solid fa-link"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">GoTo URL</span>
+                            <span class="card-desc">Clean URL shortening & link utility</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Utility</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://live-coding-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link live-coding" data-keywords="live coding with vexornull ide sandbox">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-solid fa-laptop-code brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">Live Coding Studio</span>
-                            <span class="link-subtitle">Interactive Frontend Sandbox & Code Playground</span>
+                <a href="https://live-coding-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card live-coding" data-keywords="live coding code editor playground">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-solid fa-code"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">Live Coding</span>
+                            <span class="card-desc">Interactive coding workspace & experiments</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Lab</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://stylish-font-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link website" data-keywords="stylish font generator unicode typography text">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">Stylish Font Generator</span>
-                            <span class="link-subtitle">Unicode Typography & Text Styling Tool</span>
+                <a href="https://stylish-font-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-card website" data-keywords="stylish font generator text unicode">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-solid fa-font"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">Font Generator</span>
+                            <span class="card-desc">Custom stylized text & typography tool</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Tool</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://pk-digitalhub.blogspot.com/" target="_blank" rel="noopener noreferrer" class="social-link blog" data-keywords="pk digital hub blog articles tech insights">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-blogger-b brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">PK Digital Hub</span>
-                            <span class="link-subtitle">Technical Publications, Guides & Digital Insights</span>
+                <a href="https://pk-digitalhub.blogspot.com/" target="_blank" rel="noopener noreferrer" class="link-card blog" data-keywords="pk digital hub blog articles guides">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-solid fa-feather-pointed"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">PK Digital Hub</span>
+                            <span class="card-desc">Articles, notes & digital resources</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Read</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
             </div>
 
-            <!-- Category 2: Official Developer & Social Channels -->
-            <div class="link-section" data-section>
-                <div class="section-header">
-                    <span>Verified Networks</span>
-                    <span class="section-line"></span>
-                </div>
+            <!-- Group 2: Social & Developer Profiles -->
+            <div class="link-group" data-group>
+                <h2 class="group-title">Social & Profiles</h2>
 
-                <a href="https://github.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link github" data-keywords="github repositories open source code vexornull">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-github brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">GitHub</span>
-                            <span class="link-subtitle">Open-Source Repositories & Source Code</span>
+                <a href="https://github.com/vexornull" target="_blank" rel="noopener noreferrer" class="link-card github" data-keywords="github code repositories open source">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-brands fa-github"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">GitHub</span>
+                            <span class="card-desc">Repositories & open-source code</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Code</span>
-                        <i class="fa-solid fa-chevron-right link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="social-link linkedin" data-keywords="linkedin professional network career connect">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-linkedin-in brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">LinkedIn</span>
-                            <span class="link-subtitle">Executive Network & Career Profile</span>
+                <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="link-card linkedin" data-keywords="linkedin professional career network">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">LinkedIn</span>
+                            <span class="card-desc">Career profile & professional network</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Connect</span>
-                        <i class="fa-solid fa-chevron-right link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://wa.me/+923229522470" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" data-keywords="whatsapp direct message contact business chat">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-whatsapp brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">WhatsApp Direct</span>
-                            <span class="link-subtitle">Priority Business & Direct Communication</span>
+                <a href="https://wa.me/+923229522470" target="_blank" rel="noopener noreferrer" class="link-card whatsapp" data-keywords="whatsapp chat message direct contact">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">WhatsApp</span>
+                            <span class="card-desc">Direct message & quick contact</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Message</span>
-                        <i class="fa-solid fa-chevron-right link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://youtube.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link youtube" data-keywords="youtube videos tutorials tech channel">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-youtube brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">YouTube</span>
-                            <span class="link-subtitle">Tech Breakdowns, Tutorials & Media</span>
+                <a href="https://youtube.com/@vexornull" target="_blank" rel="noopener noreferrer" class="link-card youtube" data-keywords="youtube videos channel tutorials">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-brands fa-youtube"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">YouTube</span>
+                            <span class="card-desc">Videos, walkthroughs & media</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Subscribe</span>
-                        <i class="fa-solid fa-chevron-right link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link instagram" data-keywords="instagram visual updates reels photography">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-instagram brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">Instagram</span>
-                            <span class="link-subtitle">Visual Updates, Stories & Reels</span>
+                <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer" class="link-card instagram" data-keywords="instagram photos reels updates">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-brands fa-instagram"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">Instagram</span>
+                            <span class="card-desc">Visual posts, stories & reels</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Follow</span>
-                        <i class="fa-solid fa-chevron-right link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://facebook.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link facebook" data-keywords="facebook community posts updates">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-facebook-f brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">Facebook</span>
-                            <span class="link-subtitle">Community Feed & Announcements</span>
+                <a href="https://facebook.com/vexornull" target="_blank" rel="noopener noreferrer" class="link-card facebook" data-keywords="facebook community posts updates">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-brands fa-facebook-f"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">Facebook</span>
+                            <span class="card-desc">Community updates & feed</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Explore</span>
-                        <i class="fa-solid fa-chevron-right link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
 
-                <a href="https://tiktok.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link tiktok" data-keywords="tiktok short clips dev videos">
-                    <div class="link-content">
-                        <div class="icon-box"><i class="fa-brands fa-tiktok brand-icon"></i></div>
-                        <div class="link-text-group">
-                            <span class="link-title">TikTok</span>
-                            <span class="link-subtitle">Short-Form Tech & Coding Clips</span>
+                <a href="https://tiktok.com/@vexornull" target="_blank" rel="noopener noreferrer" class="link-card tiktok" data-keywords="tiktok short clips videos">
+                    <div class="card-left">
+                        <span class="card-icon"><i class="fa-brands fa-tiktok"></i></span>
+                        <div class="card-meta">
+                            <span class="card-title">TikTok</span>
+                            <span class="card-desc">Short-form clips & highlights</span>
                         </div>
                     </div>
-                    <div class="link-right">
-                        <span class="badge-action">Watch</span>
-                        <i class="fa-solid fa-chevron-right link-arrow"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-up-right card-arrow"></i>
                 </a>
             </div>
 
             <!-- Empty Search State -->
-            <div id="noResults" class="no-results" style="display: none;">
-                <i class="fa-solid fa-satellite-dish"></i>
-                <p>No matching platform or project found.</p>
-                <button type="button" class="reset-filter-btn" onclick="clearSearch()">Reset Filter</button>
+            <div id="noResults" class="empty-state" style="display: none;">
+                <p>No matching link found.</p>
+                <button type="button" class="text-link-btn" onclick="clearSearch()">Clear filter</button>
             </div>
         </div>
     </main>
 
-    <!-- QR Pass Modal -->
-    <div id="qrModal" class="modal-overlay" onclick="closeQrModal(event)" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
-        <div class="modal-card">
-            <button type="button" class="modal-close" onclick="closeQrModal(event)" aria-label="Close modal">
+    <!-- Minimal QR Modal -->
+    <div id="qrModal" class="modal-backdrop" onclick="closeQrModal(event)" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+        <div class="modal-sheet">
+            <button type="button" class="modal-x" onclick="closeQrModal(event)" aria-label="Close">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <span class="modal-tag">DIGITAL PASS</span>
-            <h3 id="qrModalTitle">Tanveer Hussain</h3>
-            <p>Scan with any mobile camera to launch this verified hub.</p>
-            <div class="qr-box">
+            <h3 id="qrTitle">Scan QR Code</h3>
+            <p>Point your camera to open this hub on mobile.</p>
+            <div class="qr-frame">
                 <img id="qrImage" src="" alt="Hub QR Code">
             </div>
-            <div class="modal-footer-handle">@vexornull</div>
+            <span class="qr-handle">@vexornull</span>
         </div>
     </div>
 
-    <!-- Executive Footer -->
-    <footer>
-        <span>© <span id="currentYear">2026</span></span>
-        <span class="footer-dot">•</span>
-        <span>Engineered by <a href="https://github.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a></span>
+    <!-- Subtle Footer -->
+    <footer class="hub-footer">
+        <span>© <span id="year">2026</span> Tanveer Hussain</span>
+        <span>•</span>
+        <a href="https://github.com/vexornull" target="_blank" rel="noopener noreferrer">@vexornull</a>
     </footer>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <!-- Minimal Toast -->
+    <div id="toast" class="toast-msg" role="status" aria-live="polite"></div>
 
-    <!-- Script -->
     <script src="script.js"></script>
 </body>
 </html>
